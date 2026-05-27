@@ -1,0 +1,54 @@
+\documentclass[12pt,a4paper]{book}
+
+% Language
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+%% Quotes
+\usepackage{csquotes}
+\MakeOuterQuote{"}  % allow using ".." instead of ``..''
+
+% Links
+\usepackage[hidelinks]{hyperref}  % remove default link borders
+
+% Figures
+\usepackage{graphicx}
+\setcounter{totalnumber}{1}  % 1 figure per page
+
+% Bibliography
+\bibliographystyle{apalike}
+
+\title{Probability and Statistics in Particle Physics}
+\author{A. G. Frodesen, O. Skjeggestad, H. Tofte}
+\date{}
+
+% Split book into multiple files
+% Should be last package to be loaded
+\usepackage{subfiles}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+% Chapters
+\subfile{chapters/1.tex}
+\subfile{chapters/2.tex}
+\subfile{chapters/3.tex}
+\subfile{chapters/4.tex}
+\subfile{chapters/5.tex}
+\subfile{chapters/6.tex}
+\subfile{chapters/7.tex}
+\subfile{chapters/8.tex}
+\subfile{chapters/9.tex}
+\subfile{chapters/10.tex}
+\subfile{chapters/11.tex}
+\subfile{chapters/12.tex}
+\subfile{chapters/13.tex}
+\subfile{chapters/14.tex}
+
+% Bibliography
+\bibliography{bibliography.bib}
+
+\end{document}
