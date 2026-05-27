@@ -37,6 +37,35 @@ may therefore be satisfied with reading only the first two sections of this chap
 
 \section{Definitions}
 
+The term estimator denotes in the following a function of the observations,
+or the method or prescription used to find a value for an unknown parameter.
+By an estimate we mean the numerical value of the parameter obtained with the estimator for a particular set of observations.
+If the parameter is $\theta$, its estimate is denoted by $\hat{\theta}$.
+The term statistic was introduced in Sect. \ref{sec:7.1}
+as a function of one or more random variables that does not depend on any unknown parameters.
+In the general case,
+we will let the statistic $t = t(x_1,x_2,\ldots,x_n)$
+be an estimator of the unknown $\theta$ or of some function of $\theta$.
+If a continuous or discrete population has the probability distribution $f(x; \theta)$,
+the \emph{likelihood} of the observations $x1, x2, \ldots, x_n$ for a specific $\theta$ is given by
+%
+\begin{equation}
+    L(x_1, x_2, \ldots, x_n | \theta) = \prod_{i=1}^n f(x_i ; \theta)
+\end{equation}
+%
+The product expresses the joint conditional probability for obtaining the
+measurements $x_1, x_2, \ldots, x_n$ given $\theta$.
+We shall later also think of $L(x_1, x_2, \ldots, x_n | \theta)$ as a function of $\theta$,
+calling it a \emph{likelihood function}.
+We will use the symbol $L$ or $L(\vec{x} | \theta)$ to denote the likelihood
+(i.e, the number expressing the joint probability)
+as well as the likelihood function
+(i.e. the function of $\theta$).
+The third interpretation regards $L$ as a joint probability density function of observable quantities $x_1, x_2, \ldots, x_n$, for a given $\theta$.
+Hopefully, in the following,
+the precise meaning of the symbol $L$, or $L(\vec{x} | \theta)$,
+will be clear from the context in which it appears.
+
 \section{Properties of estimators}
 
 \section{Consistency}
