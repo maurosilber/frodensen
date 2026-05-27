@@ -1,0 +1,23 @@
+{
+    "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/.pixi/_build",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "tectonic",
+            "command": "pixi",
+            "args": [
+                "run",
+                "_compile-file",
+                "%DOC_EXT%"
+            ],
+            "env": {}
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "tectonic",
+            "tools": [
+                "tectonic"
+            ]
+        }
+    ]
+}

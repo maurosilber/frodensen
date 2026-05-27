@@ -1,0 +1,15 @@
+[workspace]
+channels = ["conda-forge"]
+platforms = ["win-64", "osx-arm64", "linux-64"]
+
+[dependencies]
+tectonic = "*"
+
+[tasks._compile-file]
+description = "Compile a .tex file using tectonic with SyncTeX data"
+args = ["file"]
+cmd = "tectonic {{ file }} --print --synctex --outdir .pixi/_build"
+
+[tasks.compile-main]
+description = "Compile the main file"
+cmd = "tectonic book/main.tex"
