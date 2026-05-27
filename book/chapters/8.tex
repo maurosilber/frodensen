@@ -165,6 +165,31 @@ one can use the conventional mean value.
 Mathematically, the property unbiasedness is therefore defined if,
 for all sample sizes $n$,
 the expectation value of the estimator $t$ is equal to the true parameter value $\theta$,
+%
+\begin{equation}
+    E(t) = \theta
+\end{equation}
+%
+if
+%
+\begin{equation}
+    E(t) = \theta + b
+\end{equation}
+%
+and $b$ is different from zero, the estimator is biased.
+The bias term $b = b(\theta)$
+will for all reasonable estimators be of order $\frac{1}{n}$ or smaller compared to $\theta$.
+
+It is rather trivial to see that the sample mean $X$ is an unbiased
+estimator of the population mean $\mu$ whenever the latter exists.
+It is also seen that the estimator $\bar{x'}$ above
+will be a biased estimator of $\theta$ for all $a$ different from zero.
+
+Consistency and unbiasedness are independent estimator qualities,
+as neither property implies the other.
+It is generally accepted that consistency is more important than unbiasedness,
+partly because bias can often be corrected for.
+A consistent estimator whose asymptotic distribution has a finite mean will always be asymptotically unbiased.
 
 \subsection{Example: $s^2$ as an estimator of $\sigma^2$}
 \subsection{Example: Estimator of the third central moment}
