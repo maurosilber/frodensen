@@ -68,6 +68,30 @@ will be clear from the context in which it appears.
 
 \section{Properties of estimators}
 
+Observations are random variables.
+Any function of the observations will also be a random variable,
+which may take on a variety of values.
+If a statistic $t = t(x_1,x_2,\ldots,x_n)$ is used as an estimator for the parameter $\theta$,
+it will therefore give rise to a distribution of estimates $\hat{\theta}$.
+The individual estimates obtained are of less interest than their overall distribution,
+because this distribution will reflect the quality of the estimator when it is used many tines.
+We will therefore judge the merits of an estimator from the characteristics of the distribution of its estimates.
+%
+\begin{equation}
+    t
+    = \bar{x}
+    = \frac{1}{n} \sum_{i=1}^n x_i
+    \xrightarrow[n \to \infty]{} \mu
+\end{equation}
+%
+The sample mean is therefore a consistent estimator of the population mean.
+
+\textbf{Exercise 8.1:}
+Show explicitly that
+the mean $\bar{x}$ of a sample of size $n$
+from the normal population $N(\mu,\sigma^2)$
+converges in probability to $\mu$.
+
 \section{Consistency}
 
 \section{Unbiasedness}
