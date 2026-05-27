@@ -96,6 +96,34 @@ taking also practical considerations into account.
 
 \section{Consistency}
 
+It is intuitively clear that a desirable property of an estimator
+is that its estimates converge towards the true parameter value
+when the number of observations is increased.
+Such a property is called consistency.
+
+Mathematically, the estimator $t$ can be said to be consistent if it converges in probability to $\theta$.
+If the estimate $\hat{\theta}_n$ is obtained from a sample of size $n$,
+then, given any positive $\epsilon$ and $\delta$,
+an $N$ should exist such that
+%
+\begin{equation}
+    $P(|\hat{\theta}_n - \theta| > \epsilon) < \delta$
+\end{equation}
+%
+for all $n > N$.
+In words,
+the estimator is consistent if,
+given any small quantity $\epsilon$,
+we can find a sample size $N$ such that,
+for all larger samples,
+the probability that $\hat{\theta}_n$ differs from the true value by more than $\epsilon$
+is arbitrarily close to zero.
+
+As an example,
+we know from the Law of Large Numbers (Sect. \ref{3.10.4}) that
+the arithmetic mean of a sample of $n$ measurements
+from a population with mean $\mu$ and finite variance
+will converge towards $\mu$ as $n$ becomes large,
 %
 \begin{equation}
     t
