@@ -107,7 +107,7 @@ then, given any positive $\epsilon$ and $\delta$,
 an $N$ should exist such that
 %
 \begin{equation}
-    $P(|\hat{\theta}_n - \theta| > \epsilon) < \delta$
+    P(|\hat{\theta}_n - \theta| > \epsilon) < \delta
 \end{equation}
 %
 for all $n > N$.
@@ -195,12 +195,176 @@ A consistent estimator whose asymptotic distribution has a finite mean will alwa
 \subsection{Example: Estimator of the third central moment}
 
 \textbf{Exercise 8.2:}
-In the binomial distribution $B(k | n,p) = \comb{n}{k} p^k (1-p)^{n-k}$,
+In the binomial distribution $B(k | n,p) = \binom{n}{k} p^k (1-p)^{n-k}$,
 where $k=0, 1, \ldots, n$,
 show that the unbiased estimator of $p$ and $p^2$ are, respectively,
 $k/n$ and $k(k-1)/n(n-1)$.
 
 \section{Minimum variance and efficiency}
+
+The requirements of consistency and unbiasedness do not uniquely determine how to choose a good estimator.
+One finds, for instance, that both the sample mean and the sample median
+are consistent and unbiased estimators of the location of a normal population with known variance.
+However, as it can be shown that the variance of the mean is smaller than the variance of the median,
+the mean is regarded as a better estimator of the central value.
+It seems natural, therefore, to use the spread in the estimates as a measure for the acceptability of an estimator.
+For most distributions encountered in practice,
+the second central moment, or the variance, will be a good measure of the concentration of the estimates;
+this is especially so for the many cases where this distribution is approximately normal.
+
+Under fairly general conditions,
+there exists a lower bound on the variance of the estimates derived from an estimator.
+This lower bound is easily established when considering the likelihood function defined by eq. (8.1).
+We shall assume that
+the first two derivatives of $L(\vec{x}|\theta)$ with respect to $\theta$ exist for all $\theta$,
+and that the range of $x$ is independent of $\theta$.
+Given an estimator $t$ of some function of $\theta$, say T($\theta$),
+we define its bias $b(\theta)$ by the relation (compare eq. (8.4)),
+%
+\begin{equation}
+    E(t)
+    = \int \ldots \int t(x_1, x_2, \ldots, x_n) L(x_1, x_2, \ldots, x_n | \theta) dx_1 dx_2 \ldots dx_n
+    = \tau(\theta) + b(\theta)
+\end{equation}
+%
+With the assumption that the range of $x$ is independent of $\theta$,
+the differentiation of eq. (8.5) with respect to $\theta$ gives
+%
+\begin{equation}
+    \int \ldots \int t \pderiv{L}{\theta} d\vec{x}
+    = \int \ldots \int t \pderiv{\ln L}{\theta} L d\vec{x}
+    = \pderiv{\tau}{\theta} + \pderiv{b}{\theta}
+\end{equation}
+%
+Since $L$ is the joint probability of the observations,
+%
+\begin{equation}
+    \int \ldots \int L d\vec{x} = 1
+\end{equation}
+%
+we find by differentiating this relation with respect to $\theta$
+%
+\begin{equation}
+    \int \ldots \int \pderiv{L}{\theta} d\vec{x}
+    = \int \ldots \int \pderiv{\ln L}{\theta} L d\vec{x} 
+    = 0
+\end{equation}
+%
+Multiplying eq. (8.8) by $\tau(\theta)$
+and subtracting the result from eq. (8.6) leads to
+%
+\begin{equation}
+    \int \ldots \int [t - \tau(\theta)] \pderiv{\ln L}{\theta} L d\vec{x}
+    = \pderiv{\tau}{\theta} + \pderiv{b}{\theta}
+\end{equation}
+%
+By applying the Schwarz inequality to the integral,
+we obtain the formula
+%
+\begin{equation}
+    \left( \int \ldots \int [t - \tau(\theta)]^2 L d\vec{x} \right)
+    \left( \int \ldots \int \pderiv{\ln L}{\theta}^2 d\vec{x} \right)
+    \geq \left( \pderiv{\tau}{\theta} + \pderiv{b}{\theta} \right)^2
+\end{equation}
+%
+which can be written as
+%
+\begin{equation}
+    V(t)
+    \geq \frac
+    {\left( \pderiv{\tau}{\theta} + \pderiv{b}{\theta} \right)^2}
+    {E\left[\left(\pderiv{\ln L}{\theta}\right)^2\right]}
+\end{equation}
+%
+This fundamental inequality for the variance of an estimator is often referred to as the Cramer-Rao inequality.
+When $L$ satisfies the aforementioned regularity conditions,
+one can prove the following relation,
+%
+\begin{equation}
+    E\left[\left(\pderiv{\ln L}{\theta}\right)^2\right]
+    = E\left[-\frac{\partial^2 \ln L}{\partial \theta^2}\right]
+\end{equation}
+%
+Thus an alternative form of the Cramer-Rao inequality,
+which is sometimes easier to evaluate, is
+%
+\begin{equation}
+    V(t)
+    \geq \frac
+    {\left( \pderiv{\tau}{\theta} + \pderiv{b}{\theta} \right)^2}
+    {E\left[-\frac{\partial^2 \ln L}{\partial \theta^2}\right]}
+\end{equation}
+%
+The lower limit of the variance implied by eqs. (8.11), (8.13) is called the minimum variance bound, MVB,
+and an estimator attaining this limit is called an MVB estimator,
+or more often, and efficient estimator.
+
+From the derivation above,
+it is realized that the variance of an estimator will attain the MVB
+if the Schwarz inequality applied to eq. (8.9) becomes an equality.
+The necessary and sufficient condition for this
+is that $[t-\tau(\theta)]$ is linearly related to $\pderiv{\ln L}{\theta}$ for all sets of observations;
+we write
+%
+\begin{equation}
+    \pderiv{\ln L}{\theta} = A(\theta) \left[ t - \tau(\theta) - b(\theta) \right]
+\end{equation}
+%
+From eq. (8.13), one then gets a simple formula for the MVB,
+%
+\begin{equation}
+    V(t) = \frac
+    {\left( \pderiv{\tau}{\theta} + \pderiv{b}{\theta} \right)^2}
+    {A(\theta)}
+\end{equation}
+%
+Efficient estimators exist only for the limited class of problems for which the likelihood function satisfies the condition (8.14).
+Most estimators will have a variance larger than the MVB.
+We therefore define the efficiency of an estimator as the ratio between the MVB and the actual variance $V(t)$ of the estimator,
+%
+\begin{equation}
+    \text{Efficiency(t)} = \frac{\text{MVB}}{V(t)}
+\end{equation}
+%
+It is interesting to note that
+for distributions where the regularity conditions do not hold
+the minimum attainable variance may be smaller or larger than the MVB.
+
+For the particular case where $t$ is an estimator of the parameter $\theta$ itself,
+we have $\pderiv{\tau}{\theta} = 1$,
+and the Cramer-Rao inequalities (8.11) and (8.13) become, respectively,
+%
+\begin{align}
+    V(t)
+    &\geq \frac
+    {\left( 1 + \pderiv{b}{\theta} \right)^2}
+    {E\left[\left(\pderiv{\ln L}{\theta}\right)^2\right]}
+    \\
+    V(t)
+    &\geq \frac
+    {\left( 1 + \pderiv{b}{\theta} \right)^2}
+    {E\left[-\frac{\partial^2 \ln L}{\partial \theta^2}\right]}
+\end{align}
+%
+The efficiency condition eq. (8.14) then reads
+%
+\begin{equation}
+    \pderiv{\ln L}{\theta} = A(\theta) \left[ t - \theta - b(\theta) \right]
+\end{equation}
+%
+simplifying the MVB formula (8.15) to
+%
+\begin{equation}
+    V(t) = \frac
+    {\left( 1 + \pderiv{b}{\theta} \right)^2}
+    {A(\theta)}
+\end{equation}
+%
+
+\textbf{Exercise 8.3:}
+Prove eq. (8.12).
+(Hint: Differentiate eq. (8.8) with respect to $\theta$).
+
 \subsection{Example: Estimator of the mean in the Poisson distribution}
 \subsection{Example: Estimators of the mean in the normal p.d.f.}
 \subsection{Example: Estimators of $\sigma^2$ and $\sigma$ in the normal p.d.f.}
