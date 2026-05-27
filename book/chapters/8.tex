@@ -95,6 +95,31 @@ converges in probability to $\mu$.
 \section{Consistency}
 
 \section{Unbiasedness}
+
+Consistency is a property
+that describes the behavior of an estimator when the sample size increases to infinity,
+but says nothing about its behavior for finite data sets.
+For example,
+in the last section,
+we just saw that the sample mean $\bar{x}$ is a consistent estimator of the population mean $\mu$,
+but so would also be
+%
+\begin{equation}
+    t' = \bar{x'} = \frac{1}{n-a} \sum_{i=1}^n x_i
+\end{equation}
+%
+where $a$ is any fixed number.
+Why do we prefer one to the other?
+
+Unbiasedness is an estimator property defined for finite sets of observations.
+This property is possessed by estimators whose estimates are not systematically shifted from the true parameter value
+but centered around this value for all sample sizes.
+As a measure of the centre of a distribution,
+one can use the conventional mean value.
+Mathematically, the property unbiasedness is therefore defined if,
+for all sample sizes $n$,
+the expectation value of the estimator $t$ is equal to the true parameter value $\theta$,
+
 \subsection{Example: $s^2$ as an estimator of $\sigma^2$}
 \subsection{Example: Estimator of the third central moment}
 
