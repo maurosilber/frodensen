@@ -51,6 +51,7 @@ the \emph{likelihood} of the observations $x1, x2, \ldots, x_n$ for a specific $
 %
 \begin{equation}
     L(x_1, x_2, \ldots, x_n | \theta) = \prod_{i=1}^n f(x_i ; \theta)
+    \label{eq:8.1}
 \end{equation}
 %
 The product expresses the joint conditional probability for obtaining the
@@ -108,6 +109,7 @@ an $N$ should exist such that
 %
 \begin{equation}
     P(|\hat{\theta}_n - \theta| > \epsilon) < \delta
+    \label{eq:8.2}
 \end{equation}
 %
 for all $n > N$.
@@ -168,12 +170,14 @@ the expectation value of the estimator $t$ is equal to the true parameter value 
 %
 \begin{equation}
     E(t) = \theta
+    \label{eq:8.3}
 \end{equation}
 %
 if
 %
 \begin{equation}
     E(t) = \theta + b
+    \label{eq:8.4}
 \end{equation}
 %
 and $b$ is different from zero, the estimator is biased.
@@ -214,57 +218,66 @@ this is especially so for the many cases where this distribution is approximatel
 
 Under fairly general conditions,
 there exists a lower bound on the variance of the estimates derived from an estimator.
-This lower bound is easily established when considering the likelihood function defined by eq. (8.1).
+This lower bound is easily established when considering the likelihood function defined by \eqref{eq:8.1}.
 We shall assume that
 the first two derivatives of $L(\vec{x}|\theta)$ with respect to $\theta$ exist for all $\theta$,
 and that the range of $x$ is independent of $\theta$.
-Given an estimator $t$ of some function of $\theta$, say T($\theta$),
-we define its bias $b(\theta)$ by the relation (compare eq. (8.4)),
+Given an estimator $t$ of some function of $\theta$, say $\tau(\theta)$,
+we define its bias $b(\theta)$ by the relation (compare \eqref{eq:8.4}),
 %
 \begin{equation}
     E(t)
-    = \int \ldots \int t(x_1, x_2, \ldots, x_n) L(x_1, x_2, \ldots, x_n | \theta) dx_1 dx_2 \ldots dx_n
+    = \int \ldots \int
+        t(\vec{x}) \,
+        L(\vec{x} | \theta) \,
+        d\vec{x}
     = \tau(\theta) + b(\theta)
+    \label{eq:8.5}
 \end{equation}
 %
 With the assumption that the range of $x$ is independent of $\theta$,
-the differentiation of eq. (8.5) with respect to $\theta$ gives
+the differentiation of \eqref{eq:8.5} with respect to $\theta$ gives
 %
 \begin{equation}
-    \int \ldots \int t \pderiv{L}{\theta} d\vec{x}
-    = \int \ldots \int t \pderiv{\ln L}{\theta} L d\vec{x}
+    \int \ldots \int t \, \pderiv{L}{\theta} \, d\vec{x}
+    = \int \ldots \int t \, \pderiv{\ln L}{\theta} \, L \, d\vec{x}
     = \pderiv{\tau}{\theta} + \pderiv{b}{\theta}
+    \label{eq:8.6}
 \end{equation}
 %
 Since $L$ is the joint probability of the observations,
 %
 \begin{equation}
     \int \ldots \int L d\vec{x} = 1
+    \label{eq:8.7}
 \end{equation}
 %
 we find by differentiating this relation with respect to $\theta$
 %
 \begin{equation}
-    \int \ldots \int \pderiv{L}{\theta} d\vec{x}
-    = \int \ldots \int \pderiv{\ln L}{\theta} L d\vec{x} 
+    \int \ldots \int \pderiv{L}{\theta} \, d\vec{x}
+    = \int \ldots \int \pderiv{\ln L}{\theta} \, L \, d\vec{x} 
     = 0
+    \label{eq:8.8}
 \end{equation}
 %
-Multiplying eq. (8.8) by $\tau(\theta)$
-and subtracting the result from eq. (8.6) leads to
+Multiplying \eqref{eq:8.8} by $\tau(\theta)$
+and subtracting the result from \eqref{eq:8.6} leads to
 %
 \begin{equation}
-    \int \ldots \int [t - \tau(\theta)] \pderiv{\ln L}{\theta} L d\vec{x}
+    \int \ldots \int [t - \tau(\theta)] \, \pderiv{\ln L}{\theta} \, L \, d\vec{x}
     = \pderiv{\tau}{\theta} + \pderiv{b}{\theta}
+    \label{eq:8.9}
 \end{equation}
 %
 By applying the Schwarz inequality to the integral,
 we obtain the formula
 %
 \begin{equation}
-    \left( \int \ldots \int [t - \tau(\theta)]^2 L d\vec{x} \right)
+    \left( \int \ldots \int \big[t - \tau(\theta)\big]^2 \, L \, d\vec{x} \right)
     \left( \int \ldots \int \pderiv{\ln L}{\theta}^2 d\vec{x} \right)
     \geq \left( \pderiv{\tau}{\theta} + \pderiv{b}{\theta} \right)^2
+    \label{eq:8.10}
 \end{equation}
 %
 which can be written as
@@ -274,6 +287,7 @@ which can be written as
     \geq \frac
     {\left( \pderiv{\tau}{\theta} + \pderiv{b}{\theta} \right)^2}
     {E\left[\left(\pderiv{\ln L}{\theta}\right)^2\right]}
+    \label{eq:8.11}
 \end{equation}
 %
 This fundamental inequality for the variance of an estimator is often referred to as the Cramer-Rao inequality.
@@ -283,6 +297,7 @@ one can prove the following relation,
 \begin{equation}
     E\left[\left(\pderiv{\ln L}{\theta}\right)^2\right]
     = E\left[-\frac{\partial^2 \ln L}{\partial \theta^2}\right]
+    \label{eq:8.12}
 \end{equation}
 %
 Thus an alternative form of the Cramer-Rao inequality,
@@ -293,37 +308,41 @@ which is sometimes easier to evaluate, is
     \geq \frac
     {\left( \pderiv{\tau}{\theta} + \pderiv{b}{\theta} \right)^2}
     {E\left[-\frac{\partial^2 \ln L}{\partial \theta^2}\right]}
+    \label{eq:8.13}
 \end{equation}
 %
-The lower limit of the variance implied by eqs. (8.11), (8.13) is called the minimum variance bound, MVB,
+The lower limit of the variance implied by eqs. \eqref{eq:8.11}, \eqref{eq:8.13} is called the minimum variance bound, MVB,
 and an estimator attaining this limit is called an MVB estimator,
 or more often, and efficient estimator.
 
 From the derivation above,
 it is realized that the variance of an estimator will attain the MVB
-if the Schwarz inequality applied to eq. (8.9) becomes an equality.
+if the Schwarz inequality applied to \eqref{eq:8.9} becomes an equality.
 The necessary and sufficient condition for this
 is that $[t-\tau(\theta)]$ is linearly related to $\pderiv{\ln L}{\theta}$ for all sets of observations;
 we write
 %
 \begin{equation}
     \pderiv{\ln L}{\theta} = A(\theta) \left[ t - \tau(\theta) - b(\theta) \right]
+    \label{eq:8.14}
 \end{equation}
 %
-From eq. (8.13), one then gets a simple formula for the MVB,
+From \eqref{eq:8.13}, one then gets a simple formula for the MVB,
 %
 \begin{equation}
     V(t) = \frac
     {\left( \pderiv{\tau}{\theta} + \pderiv{b}{\theta} \right)^2}
     {A(\theta)}
+    \label{eq:8.15}
 \end{equation}
 %
-Efficient estimators exist only for the limited class of problems for which the likelihood function satisfies the condition (8.14).
+Efficient estimators exist only for the limited class of problems for which the likelihood function satisfies the condition \eqref{eq:8.14}.
 Most estimators will have a variance larger than the MVB.
 We therefore define the efficiency of an estimator as the ratio between the MVB and the actual variance $V(t)$ of the estimator,
 %
 \begin{equation}
     \text{Efficiency(t)} = \frac{\text{MVB}}{V(t)}
+    \label{eq:8.16}
 \end{equation}
 %
 It is interesting to note that
@@ -332,38 +351,42 @@ the minimum attainable variance may be smaller or larger than the MVB.
 
 For the particular case where $t$ is an estimator of the parameter $\theta$ itself,
 we have $\pderiv{\tau}{\theta} = 1$,
-and the Cramer-Rao inequalities (8.11) and (8.13) become, respectively,
+and the Cramer-Rao inequalities \eqref{eq:8.11} and \eqref{eq:8.13} become, respectively,
 %
 \begin{align}
     V(t)
     &\geq \frac
     {\left( 1 + \pderiv{b}{\theta} \right)^2}
     {E\left[\left(\pderiv{\ln L}{\theta}\right)^2\right]}
+    \label{eq:8.17}
     \\
     V(t)
     &\geq \frac
     {\left( 1 + \pderiv{b}{\theta} \right)^2}
     {E\left[-\frac{\partial^2 \ln L}{\partial \theta^2}\right]}
+    \label{eq:8.18}
 \end{align}
 %
-The efficiency condition eq. (8.14) then reads
+The efficiency condition \eqref{eq:8.14} then reads
 %
 \begin{equation}
     \pderiv{\ln L}{\theta} = A(\theta) \left[ t - \theta - b(\theta) \right]
+    \label{eq:8.19}
 \end{equation}
 %
-simplifying the MVB formula (8.15) to
+simplifying the MVB formula \eqref{eq:8.15} to
 %
 \begin{equation}
     V(t) = \frac
     {\left( 1 + \pderiv{b}{\theta} \right)^2}
     {A(\theta)}
+    \label{eq:8.20}
 \end{equation}
 %
 
 \textbf{Exercise 8.3:}
-Prove eq. (8.12).
-(Hint: Differentiate eq. (8.8) with respect to $\theta$).
+Prove \eqref{eq:8.12}.
+(Hint: Differentiate \eqref{eq:8.8} with respect to $\theta$).
 
 \subsection{Example: Estimator of the mean in the Poisson distribution}
 \subsection{Example: Estimators of the mean in the normal p.d.f.}
