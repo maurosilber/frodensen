@@ -393,7 +393,104 @@ Prove \eqref{eq:8.12}.
 \subsection{Example: Estimators of $\sigma^2$ and $\sigma$ in the normal p.d.f.}
 
 \section{Sufficiency}
+
 \subsection{One-parameter case}
+
+An estimator $t$ is said to be \emph{sufficient}
+if it exhausts all information in the observations $x_1, x_2, \ldots, x_n$ regarding the parameter $\theta$.
+For the normal distribution,
+we have used the sample mean $\bar{x} = \frac{1}{n} \sum_i x_i$
+as an estimator of the population mean $\mu$.
+No extra knowledge on $\mu$ can be gained from other functions of the observations,
+such as $\sum_i |x_i|$, $\sum_i x_i^2$, etc.;
+the statistic $\bar{x}$ is then a sufficient estimator for $\mu$.
+Actually, any function of $\bar{x}$ provides a sufficient statistic for $\mu$ in the normal distribution.
+Therefore,
+to choose between the different functions,
+one may have to test also the qualities of consistency, unbiasedness, and efficiency.
+
+To be more precise,
+let us consider the likelihood function when the p.d.f. is $f(x;\theta)$.
+Suppose that $L$ can be factorized to give
+%
+\begin{equation}
+    L(\vec{x}|\theta)
+    = \prod_{i=1}^n f(x_i;\theta)
+    = G(t|\theta) \, H(\vec{x})
+    \label{eq:8.25}
+\end{equation}
+%
+where the function $G$ involves the statistic $t$ and the parameter $\theta$,
+and $H$ is independent of $\theta$,
+being a function of the observations $\vec{x}$ only.
+Since $G$ only has reference to the data via $t = t(x_1,x_2,\ldots,x_n)$,
+and is a known number for the given sample,
+$t$ must supply all the available information in the data regarding $\theta$.
+It follows that whenever the likelihood function can be written in the form of \eqref{eq:8.25},
+$t$ is a sufficient statistic for the parameter $\theta$.
+
+One can show that a necessary condition for a sufficient statistic to exist is that
+the p.d.f. belongs to the exponential family,
+defined by
+%
+\begin{equation}
+    f(x|\theta)
+    = \exp \left[ B(\theta)C(x) + D(\theta) + E(x) \right]
+    \label{eq:8.26}
+\end{equation}
+%
+where $B,C,D,E$ are functions of the indicated arguments.
+
+For the restricted class of p.d.f's satisfying \eqref{8.26},
+one sees that the factorization requirement of \eqref{8.25}
+implies that a sufficient statistic must be expressed by the function $C(x)$,
+%
+\begin{equation}
+    t = \sum_{i=1}^n C(x_i)
+    \label{eq:8.27}
+\end{equation}
+%
+It is easily shown that efficient estimators are always sufficient.
+To see this,
+we take logarithms on both sides of \eqref{8.25}
+and differentiate with respect to $\theta$,
+getting
+%
+\begin{equation}
+    \pderiv{\ln L}{\theta} = \pderiv{\ln G}{\theta}
+    \label{eq:8.28}
+\end{equation}
+%
+We see that the efficiency condition \eqref{8.14}
+is just a special case of the more general \eqref{8.28}, with
+%
+\begin{equation}
+    \pderiv{\ln G}{\theta} = A(\theta) \left[ t - \tau(\theta) - b(\theta) \right]
+    \label{eq:8.29}
+\end{equation}
+%
+Under the regularity conditions specified for the likelihood function in Section \ref{sec:8.5},
+there is among all sufficient estimators for $\theta$ only one efficient estimator.
+If the p.d.f. belongs to the exponential family
+and the range of $x$ is independent of $\theta$,
+it can be shown that sufficient statistics always exist for $\theta$.
+However, there will be just one sufficient statistic which will satisfy \eqref{8.29}
+and thus estimate some function $\tau(\theta)$ with variance equal to the MVB;
+compare the example of Section \ref{sec:8.5.3}.
+Furthermore, for large samples, any function of a sufficient statistic will be an MVB estimator.
+
+\textbf{Exercise 8.8:}
+Verify that the Poisson distribution
+$P(x;\theta) = \frac{1}{x!} \theta^x e^-\theta$
+belongs to the exponential family.
+Compare Section \ref{sec:8.5.1}.
+
+\textbf{Exercise 8.9:}
+Show that the Cauchy p.d.f
+$f(x;\theta) = \frac{1}{\pi} \frac{1}{1 + (x-\theta)^2}$
+does not have a sufficient estimator of $\theta$.
+Compare Exercise \ref{ex:8.4}.
+
 \subsection{Example: Single sufficient statistics for the normal p.d.f.}
 \subsection{Extension to several parameters}
 \subsection{Example: Jointly sufficient estimators for $\mu$ and $\sigma$ in N($\mu$, $\sigma^2$)}
