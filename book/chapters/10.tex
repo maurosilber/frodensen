@@ -4,9 +4,150 @@
 
 \chapter{The Least-Squares Method}
 
+In this chapter, we shall discuss the estimation of parameters by the Least-Squares (LS) method,
+probably the estimation method most frequently used in practice.
+
+The popularity of the LS method may partly be ascribed to the fact that
+it has had a long history during which it has been applied to a number of specific problems as well as to problems of more general nature.
+Besides this importance gained by tradition,
+the acceptability of the LS method,
+as for any systematic estimation principle,
+depends on the properties of the estimators to which it leads.
+Unlike the Maximum-Likelihood method,
+the Least-Squares method has no general optimum properties to recommend it,
+even asymptotically.
+However, for an important class of problems, where the parameter dependence is linear,
+the LS method has the virtue that it,
+even for small samples,
+produces unbiased estimators of minimum variance.
+
+In the following,
+we consider first the simple case with linear parameter dependence,
+then we proceed to the non-linear case,
+and further to situations of increasing complexity involving first linear,
+and later general constraint equations.
+
 \section{Basis For The Least-Squares Method} \label{sec:10.1}
+
 \subsection{The Least-Squares Principle} \label{sec:10.1.1}
+
+Briefly, the basis for the LS estimation method may be stated as follows:
+
+At the observational points $x_1$, $x_2$, $\ldots$, $x_N$,
+we are given a set of $N$ independent, experimental values $y_1$, $y_2$, $\ldots$, $y_N$.
+The true values $\eta_1$, $\eta_2$, $\ldots$, $\eta_N$ of the observables are not known,
+but we assume that some theoretic model exists,
+which predicts the true value associated with each $x_i$ through some functional dependence,
+%
+\begin{equation}
+    f_i = f_i(\theta_1, \theta_2, \ldots, \theta_L; x_i)
+\end{equation}
+%
+where $\theta_1$, $\theta_2$, $\ldots$, $\theta_L$ is a set of parameters, $L leq N$.
+According to the Least-Squares Principle,
+the best values of the unknown parameters are those which make
+%
+\begin{equation}
+    \chi^2 \equiv \sum_{i=1}^N (y_i - f_i)^2
+    \label{eq:10.2}
+\end{equation}
+%
+This is called \emph{weighted LS estimation}.
+
+If the errors in the different observations are different but known,
+the weight of the $i$-th observation is usually taken equal to its precision,
+$w_i = 1 / \sigma_i^2$.
+The quantity to be minimized is then
+%
+\begin{equation}
+    \chi^2 \equiv \sum_{i=1}^N \left(\frac{y_i - f_i}{\sigma_i}\right)^2
+    \label{eq:10.3}
+\end{equation}
+
+Quite frequently when the observations are known to be of different accuracy,
+one can not claim a precise knowledge about the errors.
+Instead, one must estimate the error in the individual measurements.
+Suppose for example, that the measurement $y_i$ gives the number of events in a class $i$.
+One could then use the approximation $\sigma_i^2 \approx f_i$,
+equivalent to considering the true $\eta_i$ a Poisson variable,
+with mean value and variance equal to $f_i$,
+i.e. one puts
+%
+\begin{equation}
+    \chi^2 \equiv \sum_{i=1}^N \frac{(y_i - f_i)^2}{f_i}
+    \label{eq:10.4}
+\end{equation}
+%
+When $f_i$ is a complicated function,
+one can also for computational convenience see the approximation $\sigma_i^2 = y_i$ be used,
+with
+%
+\begin{equation}
+    \chi^2 \equiv \sum_{i=1}^N \frac{(y_i - f_i)^2}{y_i}
+    \label{eq:10.5}
+\end{equation}
+%
+This can be called a simplified LS estimation.
+
+If the observations are correlated,
+with errors and covariance terms given by the (symmetric) covariance matrix $V(\vec{y})$,
+the Least-Squares Principle for finding the best values of the unknown parameters is formulated as
+%
+\begin{equation}
+    \chi^2 \equiv \sum_{i=1}^N \sum_{j=1}^N (y_i - f_i) V^{-1}_{ij} (y_j - f_j)
+    \label{eq:10.6}
+\end{equation}
+
+It has in all formulations above been tacitly assumed that the $x_i$ are precise values,
+with no errors attached to them.
+Each $x_i$ may have a preassigned value,
+or it has been measured with an error which is negligible to the error of the corresponding $y_i$.
+Alternatively, the "observational point" $x_i$ can stand for a well-defined region from $x_i$ to $x_i + \Delta x_i$, say.
+Whatever the meaning of $x$,
+the crucial assumption is that it is possible to make a precise evaluation of the predicted value $f_i$ corresponding to $x_i$,
+or the region from $x_i$ to $x_i + \Delta x_i$.
+Similarly,
+the experimental value $y_i$ may be considered as the outcome of a single measurement,
+or more measurements (an average, say) at the point $x$,
+eventually in the region from $x_i$ to $x_i + \Delta x_i$.
+We may well speak of $x$ as an independent, and $y$ as a dependent variable.
+
+Finally,
+it may be worthwhile to emphasize that the LS estimation method makes no requirement about the distributional properties of the observables.
+In this sense, the LS estimation is distribution-free.
+On the other hand, if the observables are normally distributed,
+the minimum value $\chi^2_{min}$ will, under certain conditions, be distributed as a chi-square variable;
+it will then be possible to give a quantitative measure of the overall fit between observations and model based on the properties of the chi-square distribution.
+This may explain why \emph{chi-square} (or $\chi^2$) \emph{minimization} in common parlance
+is used (erroneously) as synonymous with Least-Squares estimation.
+
 \subsection{Connection between the LS and the M-estimation methods} \label{sec:10.1.2}
+
+Let us now assume that we want to gain information on the true values $\eta_i$ of the observables
+on the basis of the observed numbers $y_i$.
+We can then show that the Least-Squares and the Maximum-Likelihood Principles are equivalent under certain conditions.
+If we assume that the individual measurements $y_i$ are normally distributed
+about their true, unknown values $\eta_i$ with variance $\sigma^2_i$,
+i.e. the variable $y_i$ is $N(\eta_i,\sigma^2_i)$,
+then the likelihood for observing the series $y_1$, $y_2$, $\ldots$, $y_N$ is
+%
+\begin{equation}
+    L
+    = \prod_{i=1}^N \frac{1}{\sqrt{2\pi} \, \sigma_i} \exp(-\frac{1}{2} \left(\frac{y_i - \eta_i}{\sigma_i}\right)^2)
+    \propto \exp(-\frac{1}{2} \sum_{i=1}^N \left(\frac{y_i - \eta_i}{\sigma_i}\right)^2)
+\end{equation}
+%
+According to the Maximum-Likelihood Principle,
+the most probable values of the unknown $\eta_i$'s are those which make $L$ as large as possible.
+Evidently, $L$ is at a maximum when
+%
+\begin{equation}
+    \sum_{i=1}^N \left(\frac{y_i - \eta_i}{\sigma_i}\right)^2
+    = \text{minimum}
+\end{equation}
+%
+which is equivalent to the Least-Squares Principle,
+provided the weights are identified with the precisions in the individual, independent measurements, $w_i = 1 / \sigma_i^2$.
 
 \section{The Linear Least-Squares Model} \label{sec:10.2}
 \subsection{Example: Fitting a straight line (1)} \label{sec:10.2.1}
